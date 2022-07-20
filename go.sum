@@ -1,0 +1,4 @@
+github.com/alexsetta/httputils v0.0.0-20220719143557-3e83cca8a595 h1:DEB4ukCUvJbMxTgHg8feUCK47CdGBgqn02ydWYfRJSU=
+github.com/alexsetta/httputils v0.0.0-20220719143557-3e83cca8a595/go.mod h1:meBR96NExaN9uC+4P/6aB4hBngQ2csD8g+nsC4GrgNQ=
+github.com/alexsetta/telegram v0.0.0-20220719150426-384de71efef0 h1:Q4leQBhUW52FFvKeEzlkBY9pc5K4/iE8QIvZ+pG5yIE=
+github.com/alexsetta/telegram v0.0.0-20220719150426-384de71efef0/go.mod h1:bB6TmhTtr4PpcceMG6/nY6EP92hWQlfMmvu45v8HYSM=
