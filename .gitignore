@@ -2,3 +2,5 @@
 .idea/
 *.json
 *.exe
+/megasena
+/nohup.out
