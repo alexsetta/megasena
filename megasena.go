@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/alexsetta/httputils"
-	"github.com/alexsetta/telegram"
 	"log"
 	"time"
 )
@@ -12,6 +11,10 @@ import (
 const (
 	url   = "https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena"
 	sleep = 60 * time.Minute
+)
+
+var (
+	ultimo = ""
 )
 
 func main() {
@@ -24,15 +27,10 @@ func main() {
 		var res map[string]interface{}
 		json.Unmarshal([]byte(data), &res)
 
-		log.Fatal(res["dataApuracao"])
-
-		config, err := telegram.ReadConfig("telegram.json")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		if err := telegram.SendMessage(config.ID, config.Token, "Resultados Mega-Sena: \n\r"+fmt.Sprintf(" %v", res["listaDezenas"])); err != nil {
-			log.Fatal(err)
+		concurso := fmt.Sprintf("%v", res["numero"])
+		if ultimo != concurso {
+			ultimo = concurso
+			notifica(concurso, fmt.Sprintf(" %v", res["listaDezenas"]))
 		}
 
 		log.Println("Aguardando próxima execução")
