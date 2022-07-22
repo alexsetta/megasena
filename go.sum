@@ -2,3 +2,13 @@ github.com/alexsetta/httputils v0.0.0-20220721135358-917cf22b6d11 h1:8adaXX5tc2f
 github.com/alexsetta/httputils v0.0.0-20220721135358-917cf22b6d11/go.mod h1:meBR96NExaN9uC+4P/6aB4hBngQ2csD8g+nsC4GrgNQ=
 github.com/alexsetta/telegram v0.0.0-20220719150426-384de71efef0 h1:Q4leQBhUW52FFvKeEzlkBY9pc5K4/iE8QIvZ+pG5yIE=
 github.com/alexsetta/telegram v0.0.0-20220719150426-384de71efef0/go.mod h1:bB6TmhTtr4PpcceMG6/nY6EP92hWQlfMmvu45v8HYSM=
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/go-co-op/gocron v1.15.1 h1:gOi+Xe88yj9N6GgYfSYAhdoKEWm7Ykx18WtWKcM+WEI=
+github.com/go-co-op/gocron v1.15.1/go.mod h1:W/N9G7bntRo5fVQlmjncvqSt74jxCxHfjyHlgcB33T8=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/robfig/cron/v3 v3.0.1 h1:WdRxkvbJztn8LMz/QEvLN5sBU+xKpSqwwUO1Pjr4qDs=
+github.com/robfig/cron/v3 v3.0.1/go.mod h1:eQICP3HwyT7UooqI/z+Ov+PtYAWygg1TEWWzGIFLtro=
+github.com/stretchr/testify v1.8.0 h1:pSgiaMZlXftHpm5L7V1+rVB+AZJydKsMxsQBIJw4PKk=
+golang.org/x/sync v0.0.0-20210220032951-036812b2e83c h1:5KslGYwFpkhGh+Q16bwMP3cOontH8FOep7tGV86Y7SQ=
+golang.org/x/sync v0.0.0-20210220032951-036812b2e83c/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
