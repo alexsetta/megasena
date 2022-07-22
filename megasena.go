@@ -1,41 +1,33 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"github.com/alexsetta/httputils"
 	"github.com/go-co-op/gocron"
+	"github.com/tidwall/gjson"
 	"log"
 	"time"
 )
 
 const (
-	url = "https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena"
+	ErrURLNotDefined  = "'URL' not defined in config file"
+	ErrReadConfigFile = "Error read config file"
 )
 
-var ultimo = ""
-
-func taskTeste() {
-	log.Println("ok")
-}
-
-func task() {
-	data, err := httputils.GetBody(url, false)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var res map[string]interface{}
-	json.Unmarshal([]byte(data), &res)
-
-	concurso := fmt.Sprintf("%v", res["numero"])
-	if ultimo != concurso {
-		ultimo = concurso
-		notifica(concurso, fmt.Sprintf(" %v", res["listaDezenas"]))
-	}
-}
+var (
+	ultimo = ""
+	url    = ""
+)
 
 func main() {
+	json, err := ReadJson("megasena.json")
+	if err != nil {
+		log.Fatalf(ErrReadConfigFile)
+	}
+	value := gjson.Get(json, "url")
+	url = value.String()
+	if url == "" {
+		log.Fatalf(ErrURLNotDefined)
+	}
+
 	s := gocron.NewScheduler(time.UTC)
 	location, err := time.LoadLocation("America/Sao_Paulo")
 	if err != nil {
