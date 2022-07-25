@@ -13,7 +13,8 @@ const (
 )
 
 var (
-	ultimo = ""
+	debug  = false
+	ultimo = "0"
 	url    = ""
 )
 
@@ -22,11 +23,11 @@ func main() {
 	if err != nil {
 		log.Fatalf(ErrReadConfigFile)
 	}
-	value := gjson.Get(json, "url")
-	url = value.String()
+	url = gjson.Get(json, "url").String()
 	if url == "" {
 		log.Fatalf(ErrURLNotDefined)
 	}
+	debug = gjson.Get(json, "debug").Bool()
 
 	s := gocron.NewScheduler(time.UTC)
 	location, err := time.LoadLocation("America/Sao_Paulo")
@@ -35,15 +36,17 @@ func main() {
 	}
 	s.ChangeLocation(location)
 
-	job, err := s.Every(1).Day().Wednesday().Saturday().At("20:15;20:30").Do(task)
-	//job, err := s.Every(10).Seconds().Do(taskTeste)
+	job, err := s.Every(1).Day().Wednesday().Saturday().At("20:20;20:30").Do(task)
+	if debug {
+		job, err = s.Every(10).Seconds().Do(taskTest)
+	}
 	if err != nil {
 		log.Fatalf("Error creating job: %v", err)
 	}
 	go func() {
 		for {
-			time.Sleep(10 * time.Second)
-			log.Println("Next run", job.NextRun())
+			time.Sleep(5 * time.Second)
+			log.Println("Next run: ", job.NextRun())
 			time.Sleep(12 * time.Hour)
 		}
 	}()
