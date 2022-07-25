@@ -13,6 +13,7 @@ const (
 )
 
 var (
+	aposta = ""
 	debug  = false
 	ultimo = "0"
 	url    = ""
@@ -28,6 +29,7 @@ func main() {
 		log.Fatalf(ErrURLNotDefined)
 	}
 	debug = gjson.Get(json, "debug").Bool()
+	aposta = gjson.Get(json, "aposta").String()
 
 	s := gocron.NewScheduler(time.UTC)
 	location, err := time.LoadLocation("America/Sao_Paulo")
@@ -35,6 +37,8 @@ func main() {
 		log.Fatalf("Error loading location: %s", err)
 	}
 	s.ChangeLocation(location)
+
+	_, _ = task()
 
 	job, err := s.Every(1).Day().Wednesday().Saturday().At("20:20;20:30").Do(task)
 	if debug {

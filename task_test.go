@@ -6,17 +6,6 @@ import (
 	"testing"
 )
 
-func Test_Verifica(t *testing.T) {
-	aposta := "04 10 23 30 49 55"
-	resultado := "[16 20 21 39 44 55]"
-	esperado := "55"
-	retornado := ""
-
-	if aposta != resultado {
-		t.Errorf("expected: %s, returned: %s", esperado, retornado)
-	}
-}
-
 func Test_task(t *testing.T) {
 	json, err := ReadJson("megasena.json")
 	if err != nil {
