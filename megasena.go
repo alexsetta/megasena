@@ -38,7 +38,7 @@ func main() {
 
 	job, err := s.Every(1).Day().Wednesday().Saturday().At("20:20;20:30").Do(task)
 	if debug {
-		job, err = s.Every(10).Seconds().Do(taskTest)
+		//job, err = s.Every(10).Seconds().Do(taskTest)
 	}
 	if err != nil {
 		log.Fatalf("Error creating job: %v", err)
