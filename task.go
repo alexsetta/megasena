@@ -8,7 +8,7 @@ import (
 )
 
 func taskTest() {
-	fmt.Printf("Debug: %s, Último: %s", debug, ultimo)
+	log.Printf("Debug: %s, Último: %s", debug, ultimo)
 }
 
 func task() (string, error) {
