@@ -1,35 +1,22 @@
 package main
 
 import (
-	"github.com/go-co-op/gocron"
-	"github.com/tidwall/gjson"
 	"log"
 	"time"
-)
 
-const (
-	ErrURLNotDefined  = "'URL' not defined in config file"
-	ErrReadConfigFile = "Error read config file"
+	"github.com/go-co-op/gocron"
 )
 
 var (
-	aposta = ""
-	debug  = false
-	ultimo = "0"
-	url    = ""
+	aposta   = ""
+	debug    = false
+	horarios = "21:00"
+	ultimo   = "0"
+	url      = ""
 )
 
 func main() {
-	json, err := ReadJson("megasena.json")
-	if err != nil {
-		log.Fatalf(ErrReadConfigFile)
-	}
-	url = gjson.Get(json, "url").String()
-	if url == "" {
-		log.Fatalf(ErrURLNotDefined)
-	}
-	debug = gjson.Get(json, "debug").Bool()
-	aposta = gjson.Get(json, "aposta").String()
+	readConfig()
 
 	s := gocron.NewScheduler(time.UTC)
 	location, err := time.LoadLocation("America/Sao_Paulo")
@@ -40,7 +27,7 @@ func main() {
 
 	_, _ = task()
 
-	job, err := s.Every(1).Day().Wednesday().Saturday().At("20:20;20:30").Do(task)
+	job, err := s.Every(1).Day().Wednesday().Saturday().At(horarios).Do(task)
 	if debug {
 		//job, err = s.Every(10).Seconds().Do(taskTest)
 	}

@@ -31,8 +31,8 @@ func task() (string, error) {
 		ultimo = concurso
 		msg := fmt.Sprintf("Mega-Sena concurso %s\n\r", concurso)
 		msg += fmt.Sprintf("Resultado: %s\n\r", listaDezenas)
-		msg += fmt.Sprintf("Aposta: %s\n\r", aposta)
 		msg += "\n\r"
+		msg += fmt.Sprintf("Aposta: %s\n\r", aposta)
 
 		acertos := verifica(aposta, listaDezenas)
 		if len(acertos) >= 12 {
