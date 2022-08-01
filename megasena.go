@@ -27,7 +27,8 @@ func main() {
 
 	_, _ = task()
 
-	job, err := s.Every(1).Day().Wednesday().Saturday().At(horarios).Do(task)
+	//job, err := s.Every(1).Day().Wednesday().Saturday().At(horarios).Do(task)
+	job, err := s.Every(1).Day().At(horarios).Do(task)
 	if debug {
 		//job, err = s.Every(10).Seconds().Do(taskTest)
 	}
