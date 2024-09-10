@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -16,6 +17,7 @@ var (
 )
 
 func main() {
+	fmt.Println("Iniciando")
 	readConfig()
 
 	s := gocron.NewScheduler(time.UTC)
