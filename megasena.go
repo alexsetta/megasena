@@ -9,11 +9,12 @@ import (
 )
 
 var (
-	aposta   = ""
-	debug    = false
-	horarios = "21:00"
-	ultimo   = "0"
-	url      = ""
+	aposta     = ""
+	debug      = false
+	horarios   = "21:00"
+	ultimo     = "0"
+	concLimite = "0"
+	url        = ""
 )
 
 func main() {
