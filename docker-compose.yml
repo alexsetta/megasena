@@ -1,0 +1,19 @@
+services:
+  megasena:
+    build: .
+    image: megasena
+    container_name: megasena
+    restart: unless-stopped
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "10m"
+            max-file: "3"
+    env_file:
+      - .env
+    networks:
+      - proxy_net
+
+networks:
+  proxy_net:
+    external: true
