@@ -27,6 +27,11 @@ func task() (string, error) {
 	if debug {
 		log.Printf("Concurso: %s, Último: %s, Dezenas sorteadas: %s", concurso, ultimo, listaDezenas)
 	}
+
+	if concLimite != "0" && concurso >= concLimite {
+		notifica(fmt.Sprintf("Refaça as apostas, concurso %s é maior ou igual ao limite %s", concurso, concLimite))
+	}
+
 	if ultimo != concurso {
 		ultimo = concurso
 		msg := fmt.Sprintf("Mega-Sena concurso %s\n\r", concurso)

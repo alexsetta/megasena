@@ -1,4 +1,4 @@
-﻿package main
+package main
 
 import (
 	"log"
@@ -23,4 +23,5 @@ func readConfig() {
 	aposta = gjson.Get(json, "aposta").String()
 	debug = gjson.Get(json, "debug").Bool()
 	horarios = gjson.Get(json, "horarios").String()
+	concLimite = gjson.Get(json, "concurso").String()
 }
