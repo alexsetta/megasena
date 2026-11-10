@@ -23,7 +23,9 @@ func readConfig() {
 	}
 	apostas = parseApostas(gjson.Get(json, "aposta"))
 	debug = gjson.Get(json, "debug").Bool()
-	horarios = gjson.Get(json, "horarios").String()
+	if h := gjson.Get(json, "horarios").String(); h != "" {
+		horarios = h
+	}
 	concLimite = gjson.Get(json, "concurso").String()
 }
 
