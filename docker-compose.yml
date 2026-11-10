@@ -11,6 +11,9 @@ services:
             max-file: "3"
     env_file:
       - .env
+    volumes:
+      - ./megasena.json:/app/megasena.json:ro
+      - ./telegram.json:/app/telegram.json:ro
     networks:
       - proxy_net
 
