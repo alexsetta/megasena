@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/alexsetta/httputils"
 	"log"
+	"strings"
 )
 
 func taskTest() {
@@ -35,16 +36,38 @@ func task() (string, error) {
 	if ultimo != concurso {
 		ultimo = concurso
 		msg := fmt.Sprintf("Mega-Sena concurso %s\n\r", concurso)
+		msg += fmt.Sprintf("Concurso limite: %s\n\r", concLimite)
 		msg += fmt.Sprintf("Resultado: %s\n\r", listaDezenas)
-		msg += "\n\r"
-		msg += fmt.Sprintf("Aposta: %s\n\r", aposta)
-
-		acertos := verifica(aposta, listaDezenas)
-		if len(acertos) >= 12 {
-			msg += "*** PARABENS ***\n\r"
-		}
-		msg += fmt.Sprintf("Acertos (%d): %s", len(acertos)/3, acertos)
+		msg += formataApostas(apostas, listaDezenas)
 		notifica(msg)
 	}
 	return fmt.Sprintf("%v", res["listaDezenas"]), nil
+}
+
+// formataApostas gera o trecho da mensagem com o resultado de cada cartão.
+func formataApostas(apostas []string, listaDezenas string) string {
+	msg := ""
+	sena := false
+	for i, aposta := range apostas {
+		acertos := verifica(aposta, listaDezenas)
+		qtd := len(strings.Fields(acertos))
+
+		msg += "\n\r"
+		msg += fmt.Sprintf("Cartão %d: %s\n\r", i+1, aposta)
+		msg += fmt.Sprintf("Acertos (%d): %s", qtd, strings.TrimSpace(acertos))
+		switch {
+		case qtd == 6:
+			sena = true
+			msg += " <-- SENA"
+		case qtd == 5:
+			msg += " <-- QUINA"
+		case qtd == 4:
+			msg += " <-- QUADRA"
+		}
+		msg += "\n\r"
+	}
+	if sena {
+		msg += "\n\r*** PARABENS ***\n\r"
+	}
+	return msg
 }

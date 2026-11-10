@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"strings"
 
 	"github.com/tidwall/gjson"
 )
@@ -20,8 +21,27 @@ func readConfig() {
 	if url == "" {
 		log.Fatalf(ErrURLNotDefined)
 	}
-	aposta = gjson.Get(json, "aposta").String()
+	apostas = parseApostas(gjson.Get(json, "aposta"))
 	debug = gjson.Get(json, "debug").Bool()
 	horarios = gjson.Get(json, "horarios").String()
 	concLimite = gjson.Get(json, "concurso").String()
+}
+
+// parseApostas aceita "aposta" como string única ou array de strings (um cartão por item).
+func parseApostas(v gjson.Result) []string {
+	itens := []string{v.String()}
+	if v.IsArray() {
+		itens = nil
+		for _, e := range v.Array() {
+			itens = append(itens, e.String())
+		}
+	}
+
+	var res []string
+	for _, a := range itens {
+		if a = strings.TrimSpace(a); a != "" {
+			res = append(res, a)
+		}
+	}
+	return res
 }

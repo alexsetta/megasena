@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	aposta     = ""
+	apostas    []string
 	debug      = false
 	horarios   = "21:00"
 	ultimo     = "0"
